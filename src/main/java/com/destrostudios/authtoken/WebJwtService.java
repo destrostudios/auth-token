@@ -22,7 +22,7 @@ public class WebJwtService implements JwtService {
     }
 
     @Override
-    public JwtAuthentication convert(String jwt) throws JWTVerificationException {
+    public JwtAuthentication decode(String jwt) throws JWTVerificationException {
         JwtAuthentication authentication = webVerify(jwt);
         authentication.rawJwt = jwt;
         return authentication;

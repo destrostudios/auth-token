@@ -33,13 +33,13 @@ public class KeyJwtService implements JwtService {
     }
 
     @Override
-    public JwtAuthentication convert(String jwt) throws JWTVerificationException {
+    public JwtAuthentication decode(String jwt) throws JWTVerificationException {
         Algorithm algorithm = Algorithm.RSA256((RSAPublicKey) publicKey, null);
         return fileVerify(JWT.require(algorithm).build(), jwt);
     }
 
     private JwtAuthentication fileVerify(JWTVerifier verifier, String jwt) {
-        return JwtService.convert(verifier.verify(jwt));
+        return JwtService.decode(verifier.verify(jwt));
     }
 
     private static PublicKey readPublicKey(InputStream in) {
