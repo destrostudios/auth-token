@@ -1,8 +1,17 @@
 package com.destrostudios.authtoken;
 
 public class JwtAuthenticationUser {
+
     public long id;
     public String login;
+
+    JwtAuthenticationUser() {
+    }
+
+    public JwtAuthenticationUser(long id, String login) {
+        this.id = id;
+        this.login = login;
+    }
 
     @Override
     public int hashCode() {
