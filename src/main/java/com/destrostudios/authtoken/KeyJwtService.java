@@ -14,7 +14,7 @@ import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
-import org.bouncycastle.openssl.PEMReader;
+import org.bouncycastle.util.io.pem.PemReader;
 
 public class KeyJwtService implements JwtService {
 
@@ -44,7 +44,7 @@ public class KeyJwtService implements JwtService {
 
     private static PublicKey readPublicKey(InputStream in) {
         try {
-            PEMReader pemReader = new PEMReader(new InputStreamReader(new BufferedInputStream(in)));
+            PemReader pemReader = new PemReader(new InputStreamReader(new BufferedInputStream(in)));
             byte[] publicKeyBytes = pemReader.readPemObject().getContent();
             return KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(publicKeyBytes));
         } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException ex) {
